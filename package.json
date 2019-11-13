@@ -1,27 +1,25 @@
 {
-  "name": "passport-totp",
+  "name": "passport-backup-codes",
   "version": "0.0.2",
-  "description": "TOTP authentication strategy for Passport.",
+  "description": "Backup codes authentication strategy for Passport.",
   "keywords": [
     "passport",
-    "otp",
-    "oath",
-    "totp",
+    "backup codes",
+    "backup",
+    "codes",
     "auth",
-    "authn",
     "authentication"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-totp.git"
+    "url": "git://github.com/oktapodia/passport-backup-codes.git"
   },
   "bugs": {
-    "url": "http://github.com/jaredhanson/passport-totp/issues"
+    "url": "http://github.com/oktapodia/passport-backup-codes/issues"
   },
   "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
+    "name": "Sebastien BRAMILLE",
+    "email": "2752200+oktapodia@users.noreply.github.com"
   },
   "licenses": [
     {
@@ -31,16 +29,16 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "notp": "2.0.x",
-    "passport-strategy": "1.0.0",
-    "pkginfo": "0.2.x"
+    "passport-strategy": "1.0.0"
   },
   "devDependencies": {
-    "mocha": "1.x.x",
-    "chai": "1.x.x"
+    "chai": "^4.2.0",
+    "chai-passport-strategy": "^1.0.1",
+    "mocha": "^6.2.2",
+    "passport": "^0.4.0"
   },
   "scripts": {
-    "test": "NODE_PATH=./lib node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+    "test": "mocha --require ./test/bootstrap/node test/*.test.js"
   },
   "engines": {
     "node": ">= 0.4.0"
