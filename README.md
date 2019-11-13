@@ -1,4 +1,4 @@
-# Passport-backup-codes
+# Passport-backup-codes [![Build Status](https://travis-ci.com/oktapodia/passport-backup-codes.svg?branch=master)](https://travis-ci.com/oktapodia/passport-backup-codes)
 
 [Passport](http://passportjs.org/) strategy for backup codes authentication using
 a single use value.
