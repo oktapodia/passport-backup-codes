@@ -26,30 +26,32 @@ The `setup` callback accepts a previously authenticated `user` and calls
 the `tearDown` callback which will calls `done` providing a `key` and `period` used 
 to verify the HOTP value. Authentication fails if the value is not verified.
 
-    passport.use(new BackupCodesStrategy(
-      function(user, done) {
-        BackupCodes.findOne({ userId: user.id }, function (err, codes) {
-          if (err) { return done(err); }
-          return done(null, codes);
-        });
-      },
-      function(user, code, done) {
-        BackupCodes.findOne({ userId: user.id }, function (err, codes) {
-          if (err) { return done(err); }
-          
-          codes = codes.filter((value) => {
-            return code !== value;
-          });
-          
-          BackupCodes.update(codes, function(err) {
-            if (err) { return done(err); }
+```javascript
+passport.use(new BackupCodesStrategy(
+  function(user, done) {
+    BackupCodes.findOne({ userId: user.id }, function (err, codes) {
+      if (err) { return done(err); }
+      return done(null, codes);
+    });
+  },
+  function(user, code, done) {
+    BackupCodes.findOne({ userId: user.id }, function (err, codes) {
+      if (err) { return done(err); }
 
-            return done();
-          });
-          
-        });
-      }
-    ));
+      codes = codes.filter((value) => {
+        return code !== value;
+      });
+
+      BackupCodes.update(codes, function(err) {
+        if (err) { return done(err); }
+
+        return done();
+      });
+
+    });
+  }
+));
+```
 
 #### Authenticate Requests
 
@@ -59,12 +61,14 @@ requests.
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
-    app.post('/verify-otp', 
-      passport.authenticate('backup-codes', { failureRedirect: '/verify-otp' }),
-      function(req, res) {
-        req.session.authFactors = [ 'superadmin' ];
-        res.redirect('/');
-      });
+```javascript
+app.post('/verify-otp', 
+  passport.authenticate('backup-codes', { failureRedirect: '/verify-otp' }),
+  function(req, res) {
+    req.session.authFactors = [ 'superadmin' ];
+    res.redirect('/');
+  });
+```
 
 ## Tests
 
